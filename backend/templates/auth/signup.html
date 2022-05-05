@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %} Login {% endblock %}
+
+{% block head %}
+    {{ block.super }}
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+    <form class="form-signin" method="post" action="{% url 'auth:signup' %}">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal text-center">sign up</h1>
+        {{ form.username }}
+        {{ form.email }}
+        {{ form.password1 }}
+        {{ form.password2 }}
+
+        {#        기능 미구현#}
+        {#        <div class="checkbox mb-3">#}
+        {#            <label>#}
+        {#                <input type="checkbox" value="remember-me"> Remember me#}
+        {#            </label>#}
+        {#        </div>#}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </form>
+
+
+
+
+{% endblock %}
