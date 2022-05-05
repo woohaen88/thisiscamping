@@ -22,19 +22,22 @@ def detail(request, camping_info_id):
 
 def post(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             camping_info = form.save(commit=False)
-            # post_form.user_id = request.user.id
-            camping_info.total_star = camping_info.facility_star
+            camping_info.total_star = (
+                camping_info.facility_star * 0.5 + camping_info.atmosphere_star * 0.5
+            )
+
+            camping_info.image = request.FILES.get("image")
             camping_info.user = request.user
             camping_info.save()
 
-            for img in request.FILES.getlist("imgs"):
-                photo = Photo()
-                photo.camping_info = camping_info
-                photo.image = img
-                photo.save()
+            # for img in request.FILES.getlist("imgs"):
+            #     photo = Photo()
+            #     photo.camping_info = camping_info
+            #     photo.image = img
+            #     photo.save()
 
             return redirect("index")
     else:
@@ -54,13 +57,9 @@ def update(request, camping_info_id):
     if request.method == "POST":
         form = PostForm(request.POST, instance=camping_info)
         if form.is_valid():
-            camping = form.save()
-
-            for img in request.FILES.getlist("imgs"):
-                photo = Photo()
-                photo.camping_info = camping
-                photo.image = img
-                photo.save()
+            camping = form.save(commit=False)
+            camping.image = request.FILES.get("image")
+            form.save()
 
             return redirect("camping:detail", camping_info_id=camping_info.id)
     else:

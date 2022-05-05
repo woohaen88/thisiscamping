@@ -14,7 +14,8 @@
             <p class="lead">여기에 캠핑장 정보를 입력 등록정보는 계속해서 업데이트 될 예정</p>
         </div>
 
-        <form action="{% url 'camping:post' %}" method="post" enctype="multipart/form-data">
+        <form action="{% url 'camping:update' camping_info_id=camping.id %}" method="post"
+              enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
 
@@ -34,56 +35,16 @@
                         </div>
 
                         <div class="row">
-                            <div class="mb-3 col-md-12">
+                            <div class="mb-3 col-md-8">
                                 {{ form.review.label }}
                                 {{ form.review }}
                             </div>
 
-
-                        </div>
-                        <div class="row">
-                        <div class="col-md-6">
+                            <div class="col-md-4">
                                 {{ form.facility_star.label }}
                                 {{ form.facility_star }}
                             </div>
-
-                            <div class="col-md-6">
-                                {{ form.atmosphere_star.label }}
-                                {{ form.atmosphere_star }}
-                            </div>
                         </div>
-
-                        <div class="row mt-4">
-
-                            <div class="col-md-4">
-                                {{ form.ground_on.label }}
-                                {{ form.ground_on }}
-                            </div>
-
-                            <div class="col-md-4">
-                                {{ form.with_animal.label }}
-                                {{ form.with_animal }}
-                            </div>
-
-                            <div class="col-md-4">
-                                {{ form.kind_of_camper.label }}
-                                {{ form.kind_of_camper }}
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                {{ form.kind_of_view.label }}
-                                {{ form.kind_of_view }}
-                            </div>
-
-                            <div class="col-md-6">
-                                {{ form.can_fire.label }}
-                                {{ form.can_fire }}
-                            </div>
-                        </div>
-
-
 
 
                         <div class="custom-file mt-4">
@@ -92,8 +53,9 @@
 {#                            <label class="custom-file-label" for="customFile">Choose file</label>#}
                         </div>
 
-
                         <hr class="mb-4">
+
+
                         <div class="row">
                             <button class="btn btn-primary  col-md-6" type="submit">수정</button>
 
@@ -102,6 +64,8 @@
                             </button>
 
                         </div>
+
+
                     </form>
                 </div>
             </div>

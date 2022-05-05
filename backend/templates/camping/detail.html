@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load  camping_filter %}
 {% load static %}
 
 {% block head %}
@@ -11,57 +12,69 @@
 {% endblock %}
 
 {% block content %}
+<div class="image-box mt-2">
+    <img src="{{ camping.image.url }}" alt="" class="image-thumbnail">
+</div>
 
-    <div class="image-box mt-2">
+<div class="mt-5 p-3">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">정보</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">캠핑장</th>
+            <td>{{ camping.title }}</td>
+        </tr>
+        <tr>
+            <th scope="row">접지여부</th>
+            <td>{{ camping.ground_on | ground_on }}</td>
+        </tr>
+        <tr>
+            <th scope="row">반려동물가능?</th>
+            <td>{{ camping.with_animal | with_animal }}</td>
+        </tr>
+        <tr>
+            <th scope="row">뷰 종류는</th>
+            <td>{{ camping.kind_of_view | kind_of_view }}</td>
+        </tr>
+        <tr>
+            <th scope="row">캠퍼는 조용하니?</th>
+            <td>{{ camping.kind_of_camper | kind_of_camper }}</td>
+        </tr>
+        <tr>
+            <th scope="row">불멍하고싶니?</th>
+            <td>{{ camping.can_fire | can_fire }}</td>
+        </tr>
+        <tr>
+            <th scope="row">전반적인분위기는? [1-5]</th>
+            <td>{{ camping.atmosphere_star }}</td>
+        </tr>
+        <tr>
+            <th scope="row">시설평점 [1-5]</th>
+            <td>{{ camping.facility_star }}</td>
+        </tr>
+        <tr>
+            <th scope="row">전체평점</th>
+            <td>{{ camping.total_star }}</td>
+        </tr>
+        </tbody>
+    </table>
 
-        {% for image in camping.photo_set.all %}
-            {% if forloop.last %}
-                <img src="{{ image.image.url }}" alt="" class="image-thumbnail">
-            {% endif %}
-
-        {% endfor %}
-    </div>
-
-    <div class="mt-5 p-3">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">정보</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>{{ camping.title }}</td>
-
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>{{ camping.review }}</td>
-
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>{{ camping.visited_at }}</td>
-
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-
-
-
-
-
-
-
-    {##}
-    {#    {% for image in camping.photo_set.all %}#}
-    {#        {{ image.image.url }}#}
-    {#    {% endfor %}#}
-
-
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">리뷰</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">{{ camping.review }}</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
 {% endblock %}

@@ -34,28 +34,65 @@
                         </div>
 
                         <div class="row">
-                            <div class="mb-3 col-md-8">
+                            <div class="mb-3 col-md-12">
                                 {{ form.review.label }}
                                 {{ form.review }}
                             </div>
 
-                            <div class="col-md-4">
+
+                        </div>
+                        <div class="row">
+                        <div class="col-md-6">
                                 {{ form.facility_star.label }}
                                 {{ form.facility_star }}
                             </div>
+
+                            <div class="col-md-6">
+                                {{ form.atmosphere_star.label }}
+                                {{ form.atmosphere_star }}
+                            </div>
                         </div>
 
-{#                        <div class="input-group mb-3">#}
-{#                            <div class="input-group-prepend">#}
-{#                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>#}
-{#                            </div>#}
-{#                            <div class="custom-file">#}
-{#                                <input type="file" class="custom-file-input" id="inputGroupFile01"#}
-{#                                       aria-describedby="inputGroupFileAddon01" name="imgs" multiple>#}
-{#                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>#}
-{#                            </div>#}
-{#                        </div>#}
-                        <input type="file" name="imgs" multiple>
+                        <div class="row mt-4">
+
+                            <div class="col-md-4">
+                                {{ form.ground_on.label }}
+                                {{ form.ground_on }}
+                            </div>
+
+                            <div class="col-md-4">
+                                {{ form.with_animal.label }}
+                                {{ form.with_animal }}
+                            </div>
+
+                            <div class="col-md-4">
+                                {{ form.kind_of_camper.label }}
+                                {{ form.kind_of_camper }}
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                {{ form.kind_of_view.label }}
+                                {{ form.kind_of_view }}
+                            </div>
+
+                            <div class="col-md-6">
+                                {{ form.can_fire.label }}
+                                {{ form.can_fire }}
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="custom-file mt-4">
+                            {{ form.image.label }}
+                            {{ form.image }}
+{#                            <label class="custom-file-label" for="customFile">Choose file</label>#}
+                        </div>
+
+
                         <hr class="mb-4">
                         <button class="btn btn-primary btn-lg btn-block" type="submit">등록</button>
                     </form>

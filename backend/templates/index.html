@@ -45,23 +45,28 @@
                     {% for camping in campinginfo %}
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                {% for camping_image in camping.photo_set.all %}
-                                    {% if forloop.last %}
-                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                             xmlns="http://www.w3.org/2000/svg" role="img"
-                                             aria-label="Placeholder: Thumbnail"
-                                             preserveAspectRatio="xMidYMid slice" focusable="false">
-                                        <rect width="100%" height="100%" fill="#EBE9E8"/>
-                                        <image href="{{ camping_image.image.url }}" width="100%" height="225"/>
-                                    {% endif %}
-                                {% endfor %}
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                     xmlns="http://www.w3.org/2000/svg" role="img"
+                                     aria-label="Placeholder: Thumbnail"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#EBE9E8"/>
+                                    <image href="{{ camping.image.url }}" width="100%" height="225"/>
+
                                 </svg>
                                 <div class="card-body">
                                     <p class="card-text">{{ camping.title }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{% url "camping:detail" camping_info_id=camping.id%}'">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{% url "camping:update" camping_info_id=camping.id%}'">Edit</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                    onclick="location.href='{% url "camping:detail" camping_info_id=camping.id %}'">
+                                                View
+                                            </button>
+                                            {% if request.user.id == camping.user_id %}
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                    onclick="location.href='{% url "camping:update" camping_info_id=camping.id %}'">
+                                                Edit
+                                            </button>
+                                            {% endif %}
                                         </div>
                                         <small class="text-muted">{{ camping.user.username }}</small>
                                     </div>
