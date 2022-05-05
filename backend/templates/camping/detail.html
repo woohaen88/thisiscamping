@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block title %}
+    detail
+{% endblock %}
+
+{% block content %}
+
+    <div class="image-box mt-2">
+
+        {% for image in camping.photo_set.all %}
+            {% if forloop.last %}
+                <img src="{{ image.image.url }}" alt="" class="image-thumbnail">
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+    <div class="mt-5 p-3">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">정보</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>{{ camping.title }}</td>
+
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>{{ camping.review }}</td>
+
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>{{ camping.visited_at }}</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+    {##}
+    {#    {% for image in camping.photo_set.all %}#}
+    {#        {{ image.image.url }}#}
+    {#    {% endfor %}#}
+
+
+{% endblock %}

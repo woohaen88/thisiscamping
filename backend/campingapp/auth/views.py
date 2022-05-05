@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -48,3 +48,8 @@ def signup(request):
 
     context = {"form": form}
     return render(request, "auth/signup.html", context)
+
+
+def signout(request):
+    logout(request)
+    return redirect("auth:signin")

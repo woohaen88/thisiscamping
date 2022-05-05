@@ -1,0 +1,99 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}POST{% endblock %}
+
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>post form</h2>
+            <p class="lead">여기에 캠핑장 정보를 입력 등록정보는 계속해서 업데이트 될 예정</p>
+        </div>
+
+        <form action="{% url 'camping:update' camping_info_id=camping.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+
+                <div class="col-md-12 order-md-1">
+                    <h4 class="mb-3">캠핑장 정보</h4>
+                    <form class="needs-validation" novalidate>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.title.label }}
+                                {{ form.title }}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                {{ form.visited_at.label }}
+                                {{ form.visited_at }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-8">
+                                {{ form.review.label }}
+                                {{ form.review }}
+                            </div>
+
+                            <div class="col-md-4">
+                                {{ form.facility_star.label }}
+                                {{ form.facility_star }}
+                            </div>
+                        </div>
+
+{#                        <div class="input-group mb-3">#}
+{#                            <div class="input-group-prepend">#}
+{#                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>#}
+{#                            </div>#}
+{#                            <div class="custom-file">#}
+{#                                <input type="file" class="custom-file-input" id="inputGroupFile01"#}
+{#                                       aria-describedby="inputGroupFileAddon01" name="imgs" multiple>#}
+{#                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>#}
+{#                            </div>#}
+{#                        </div>#}
+                        <input type="file" name="imgs" multiple>
+
+                        <hr class="mb-4">
+
+
+
+
+                            <div class="row">
+                                <button class="btn btn-primary  col-md-6" type="submit">수정</button>
+
+                                <button class="btn btn-danger  col-md-6" type="button" onclick="location.href='{% url "camping:delete" camping_info_id=camping.id%}'">삭제</button>
+
+                            </div>
+
+
+
+
+
+
+                    </form>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+{% endblock %}
+
+
+{##}
+{#    {{ form.title }}#}
+{#    {{ form.review }}#}
+{#    {{ form.visited_at }}#}
+{#    {{ form.facility_star }}#}
+{##}
+{#    <div class="custom-file">#}
+{#        <input type="file" class="custom-file-input" id="customFile" name="imgs" multiple/>#}
+{#        <label class="custom-file-label" for="customFile">Choose file</label>#}
+{#    </div>#}
+{#    <button type="submit" class="btn btn-primary btn-lg btn-block mt-4 mb-4 py-2">#}
+{#        확인#}
+{#    </button>#}
